@@ -128,6 +128,18 @@ need to load. You'll see a lot of <link>s to CSS files for styles and
       document.getElementById("mapDiv").style.display = "none";
     }
 
+    function inName(name) {
+      //Convert name to international standards.
+      name = name.trim().split(" ");
+      name[1] = name[1].toUpperCase();
+      name[0] = name[0].slice(0,1).toUpperCase() +
+        name[0].slice(1).toLowerCase();
+      return name[0] +" "+name[1];
+    }
+
+
+    $("#main").append(internationalizeButton);
+
     function displayHeader() {
       /*
       Start data analysis and replacement for #header sections.
@@ -177,7 +189,9 @@ need to load. You'll see a lot of <link>s to CSS files for styles and
 
         var formattedDescription = HTMLworkDescription.replace("%data%", work.jobs[job].description);
         $(".work-entry:last").append(formattedDescription);
+        }
       }
+      displayWork();
 
       /*
       Start data analysis and replacement for #projects section.
@@ -219,8 +233,13 @@ need to load. You'll see a lot of <link>s to CSS files for styles and
       }
       displayEducation();
 
-    }
-    displayWork();
+      $(document).click(function(loc) {
+        var x = loc.pageX;
+        var y = loc.pageY;
+
+        logClicks(x,y);
+      });
+
   </script>
 </body>
 </html>
