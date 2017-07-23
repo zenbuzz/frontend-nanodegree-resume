@@ -3,7 +3,7 @@ var bio = {
 	"name": "Pennywise Clown",
 	"role": "Childood Trauma Development",
   "contacts": {
-		"mobile": "000-666-0000",
+		"mobile": "207-666-9999",
 		"email": "pennywise@weallfloatdownhere.com",
 		"github": "zenbuzz",
 		"twitter": "zenonbass",
@@ -50,7 +50,7 @@ var work = {
       "title": "Greeter",
       "location": "7th Level, HL",
       "dates": "0034-1957",
-      "description": "Humor development under stressful deadlines."
+      "description": "Oversee the new member intake process. Develop community outreach programs."
     }
   ]
 }
@@ -60,8 +60,9 @@ var projects = {
     {
       "title": "Project Richie",
       "dates": "1955-1986",
-      "description": "Psychological development of rural youth.",
-      "images": ["http://www.imagesiteurlhere.com"]
+      "description": "The study of clowns in the long term psychological development of rural " +
+				"youth.",
+      "images": ["images/projectrichie.png"]
 		}
 	]
 }
