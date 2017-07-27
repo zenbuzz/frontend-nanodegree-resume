@@ -156,81 +156,18 @@ need to load. You'll see a lot of <link>s to CSS files for styles and
     displayHeader();
 
     /*
-    Start data analysis and replacement for #skills section.
+    Start data analysis and replacement for each section and display results.
     */
-    function displaySkills() {
-      //If there are any skills in resumeBuilder.js, replace %data% in helper.js.
-      $("#header").append(HTMLskillsStart);
+    bio.display();
+    projects.display();
+    work.display();
+    education.display();
 
-      //This should be a forEach since it loops an array, but I haven't gotten it working.
-//      bio.skills.forEach(function(skill) {
-//        console.log(skill);
-//        var formattedSkill = HTMLskills.replace("%data%", bio.skills[skill]);
-//        $("#skills").append(formattedSkill);
-//      }
-      for (skill in bio.skills)  {
-        var formattedSkill = HTMLskills.replace("%data%", bio.skills[skill]);
-        $("#skills").append(formattedSkill);
-      }
-    }
-    displaySkills();
-
-    /*
-    Start data analysis and replacement for #workExperience section.
-    */
-    function displayWork() {
-      $("#workExperience").append(HTMLworkStart);
-      for (job in work.jobs) {
-        var formattedEmployer = HTMLworkEmployer.replace("%data%", work.jobs[job].employer);
-        var formattedTitle = HTMLworkTitle.replace("%data%", work.jobs[job].title);
-        var formattedEmployerTitle = formattedEmployer +
-            formattedTitle;
-        $(".work-entry:last").append(formattedEmployerTitle);
-
-        var formattedDates = HTMLworkDates.replace("%data%", work.jobs[job].dates);
-        $(".work-entry:last").append(formattedDates);
-
-        var formattedLocation = HTMLworkLocation.replace("%data%", work.jobs[job].location);
-        $(".work-entry:last").append(formattedLocation);
-
-        var formattedDescription = HTMLworkDescription.replace("%data%", work.jobs[job].description);
-        $(".work-entry:last").append(formattedDescription);
-        }
-      }
-      displayWork();
-
-      /*
-      Start data analysis and replacement for #projects section and display results.
-      */
-      projects.display();
-
-      /*
-      Start data analysis and replacement for #education section.
-      */
-      function displayEducation() {
-        $("#education").append(HTMLschoolStart);
-
-        for (school in education.schools)  {
-          var formattedSchoolName = HTMLschoolName.replace("%data%", education.schools[school].name);
-          $(".education-entry:last").append(formattedSchoolName);
-          var formattedSchoolDegree = HTMLschoolDegree.replace("%data%", education.schools[school].degree);
-          $(".education-entry:last").append(formattedSchoolDegree);
-          var formattedSchoolDates = HTMLschoolDates.replace("%data%", education.schools[school].dates);
-          $(".education-entry:last").append(formattedSchoolDates);
-          var formattedSchoolLocation = HTMLschoolLocation.replace("%data%", education.schools[school].location);
-          $(".education-entry:last").append(formattedSchoolLocation);
-          var formattedSchoolMajors = HTMLschoolMajor.replace("%data%", education.schools[school].majors);
-          $(".education-entry:last").append(formattedSchoolMajors);
-        }
-      }
-      displayEducation();
-
-      $(document).click(function(loc) {
-        var x = loc.pageX;
-        var y = loc.pageY;
-
-        logClicks(x,y);
-      });
+//      $(document).click(function(loc) {
+//        var x = loc.pageX;
+//        var y = loc.pageY;
+//        logClicks(x,y);
+//      });
 
   </script>
 </body>

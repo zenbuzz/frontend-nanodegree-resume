@@ -73,6 +73,43 @@ var projects = {
 	]
 }
 
+//If there are any skills in the bio object, replace %data% in helper.js.
+bio.display = function() {
+	$("#header").append(HTMLskillsStart);
+
+	//This should be a forEach since it loops an array, but I haven't gotten it working.
+	//      bio.skills.forEach(function(skill) {
+	//        console.log(skill);
+	//        var formattedSkill = HTMLskills.replace("%data%", bio.skills[skill]);
+	//        $("#skills").append(formattedSkill);
+	//      }
+	for (skill in bio.skills)  {
+		var formattedSkill = HTMLskills.replace("%data%", bio.skills[skill]);
+		$("#skills").append(formattedSkill);
+	}
+}
+
+//If there are any jobs in the work object, replace %data% in helper.js.
+work.display = function() {
+$("#workExperience").append(HTMLworkStart);
+for (job in work.jobs) {
+	var formattedEmployer = HTMLworkEmployer.replace("%data%", work.jobs[job].employer);
+	var formattedTitle = HTMLworkTitle.replace("%data%", work.jobs[job].title);
+	var formattedEmployerTitle = formattedEmployer +
+			formattedTitle;
+	$(".work-entry:last").append(formattedEmployerTitle);
+
+	var formattedDates = HTMLworkDates.replace("%data%", work.jobs[job].dates);
+	$(".work-entry:last").append(formattedDates);
+
+	var formattedLocation = HTMLworkLocation.replace("%data%", work.jobs[job].location);
+	$(".work-entry:last").append(formattedLocation);
+
+	var formattedDescription = HTMLworkDescription.replace("%data%", work.jobs[job].description);
+	$(".work-entry:last").append(formattedDescription);
+	}
+}
+
 projects.display = function() {
 	for (project in projects.projects)  {
 		$("#projects").append(HTMLprojectStart);
@@ -92,5 +129,22 @@ projects.display = function() {
 				$(".project-entry:last").append(formattedProjectImage);
 			}
 		}
+	}
+}
+
+education.display = function() {
+	$("#education").append(HTMLschoolStart);
+
+	for (school in education.schools)  {
+		var formattedSchoolName = HTMLschoolName.replace("%data%", education.schools[school].name);
+		$(".education-entry:last").append(formattedSchoolName);
+		var formattedSchoolDegree = HTMLschoolDegree.replace("%data%", education.schools[school].degree);
+		$(".education-entry:last").append(formattedSchoolDegree);
+		var formattedSchoolDates = HTMLschoolDates.replace("%data%", education.schools[school].dates);
+		$(".education-entry:last").append(formattedSchoolDates);
+		var formattedSchoolLocation = HTMLschoolLocation.replace("%data%", education.schools[school].location);
+		$(".education-entry:last").append(formattedSchoolLocation);
+		var formattedSchoolMajors = HTMLschoolMajor.replace("%data%", education.schools[school].majors);
+		$(".education-entry:last").append(formattedSchoolMajors);
 	}
 }
