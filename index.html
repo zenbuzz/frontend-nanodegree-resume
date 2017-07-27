@@ -162,6 +162,12 @@ need to load. You'll see a lot of <link>s to CSS files for styles and
       //If there are any skills in resumeBuilder.js, replace %data% in helper.js.
       $("#header").append(HTMLskillsStart);
 
+      //This should be a forEach since it loops an array, but I haven't gotten it working.
+//      bio.skills.forEach(function(skill) {
+//        console.log(skill);
+//        var formattedSkill = HTMLskills.replace("%data%", bio.skills[skill]);
+//        $("#skills").append(formattedSkill);
+//      }
       for (skill in bio.skills)  {
         var formattedSkill = HTMLskills.replace("%data%", bio.skills[skill]);
         $("#skills").append(formattedSkill);
@@ -194,23 +200,9 @@ need to load. You'll see a lot of <link>s to CSS files for styles and
       displayWork();
 
       /*
-      Start data analysis and replacement for #projects section.
+      Start data analysis and replacement for #projects section and display results.
       */
-      function displayProjects() {
-        $("#projects").append(HTMLprojectStart);
-
-        for (project in projects.projects)  {
-          var formattedProjectTitle = HTMLprojectTitle.replace("%data%", projects.projects[project].title);
-          $(".project-entry:last").append(formattedProjectTitle);
-          var formattedProjectDates = HTMLprojectDates.replace("%data%", projects.projects[project].dates);
-          $(".project-entry:last").append(formattedProjectDates);
-          var formattedProjectDescription = HTMLprojectDescription.replace("%data%", projects.projects[project].description);
-          $(".project-entry:last").append(formattedProjectDescription);
-          var formattedProjectImage = HTMLprojectImage.replace("%data%", projects.projects[project].images);
-          $(".project-entry:last").append(formattedProjectImage);
-        }
-      }
-      displayProjects();
+      projects.display();
 
       /*
       Start data analysis and replacement for #education section.
