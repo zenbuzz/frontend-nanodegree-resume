@@ -1,4 +1,4 @@
-//Create objects and array of objects for content replacing %data% in helper.js by index.html.
+// Create objects and array of objects for content replacing %data% in helper.js by index.html.
 var bio = {
 	"name": "Pennywise Clown",
 	"role": "Childood Trauma Development",
@@ -73,23 +73,34 @@ var projects = {
 	]
 }
 
-//If there are any skills in the bio object, replace %data% in helper.js.
-bio.display = function() {
-	$("#header").append(HTMLskillsStart);
-
-	//This should be a forEach since it loops an array, but I haven't gotten it working.
-	//      bio.skills.forEach(function(skill) {
-	//        console.log(skill);
-	//        var formattedSkill = HTMLskills.replace("%data%", bio.skills[skill]);
-	//        $("#skills").append(formattedSkill);
-	//      }
-	for (skill in bio.skills)  {
-		var formattedSkill = HTMLskills.replace("%data%", bio.skills[skill]);
-		$("#skills").append(formattedSkill);
-	}
+var map = {
+	"content": work.jobs.employer
 }
 
-//If there are any jobs in the work object, replace %data% in helper.js.
+// If there are any skills in the bio object, replace %data% in helper.js.
+bio.display = function() {
+	$("#header").append(HTMLskillsStart);
+// When I moved these over from index.html, they caused the skills to move to the top for some reason.
+	$("#header").prepend(HTMLbioPic.replace("%data%", bio.biopic));
+	$("#header").prepend(HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage));
+	$("#header").prepend(HTMLlocation.replace("%data%", bio.contacts.location));
+	$("#header").prepend(HTMLgithub.replace("%data%", bio.contacts.github));
+	$("#header").prepend(HTMLemail.replace("%data%", bio.contacts.email));
+	$("#header").prepend(HTMLmobile.replace("%data%", bio.contacts.mobile));
+	$("#header").prepend(HTMLheaderRole.replace("%data%", bio.role));
+	$("#header").prepend(HTMLheaderName.replace("%data%", bio.name));
+
+	//Appends the array of bio.skills to the #skills section.
+	//TODO: Can the indexing be any cleaner?
+	index = 0
+	bio.skills.forEach(function(skill) {
+		var formattedSkill = HTMLskills.replace("%data%", bio.skills[index]);
+		$("#skills").append(formattedSkill);
+		index += 1
+	});
+}
+
+// If there are any jobs in the work object, replace %data% in helper.js.
 work.display = function() {
 $("#workExperience").append(HTMLworkStart);
 for (job in work.jobs) {
@@ -110,6 +121,7 @@ for (job in work.jobs) {
 	}
 }
 
+// If there are any jobs in the projects object, replace %data% in helper.js.
 projects.display = function() {
 	for (project in projects.projects)  {
 		$("#projects").append(HTMLprojectStart);
@@ -132,6 +144,7 @@ projects.display = function() {
 	}
 }
 
+// If there are any jobs in the education object, replace %data% in helper.js.
 education.display = function() {
 	$("#education").append(HTMLschoolStart);
 
@@ -148,3 +161,11 @@ education.display = function() {
 		$(".education-entry:last").append(formattedSchoolMajors);
 	}
 }
+
+// Add a map to the page.
+$("#mapDiv").append(googleMap);
+
+// Add an overlay in HTML when the marker is clicked on the map.
+//map.overlay = function() {
+//	mapOverlay.replace("%data%", map.content);
+//}
