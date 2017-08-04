@@ -5,13 +5,13 @@ replace the %data% placeholder text you see in them.
 var HTMLheaderName = '<h1 id="name">%data%</h1>';
 var HTMLheaderRole = '<span>%data%</span><hr>';
 
-var HTMLcontactGeneric = '<li class="flex-item"><span class="orange-text">%contact%</span><span class="white-text">%data%</span></li>';
-var HTMLmobile = '<li class="flex-item"><span class="orange-text">mobile</span><span class="white-text">%data%</span></li>';
-var HTMLemail = '<li class="flex-item"><span class="orange-text">email</span><span class="white-text">%data%</span></li>';
-var HTMLtwitter = '<li class="flex-item"><span class="orange-text">twitter</span><span class="white-text">%data%</span></li>';
-var HTMLgithub = '<li class="flex-item"><span class="orange-text">github</span><span class="white-text">%data%</span></li>';
-var HTMLblog = '<li class="flex-item"><span class="orange-text">blog</span><span class="white-text">%data%</span></li>';
-var HTMLlocation = '<li class="flex-item"><span class="orange-text">location</span><span class="white-text">%data%</span></li>';
+var HTMLcontactGeneric = '<class="flex-item"><span class="orange-text">%contact%</span><span class="white-text">%data%</span>';
+var HTMLmobile = '<class="flex-item"><span class="orange-text">mobile</span><span class="white-text">%data%</span>';
+var HTMLemail = '<class="flex-item"><span class="orange-text">email</span><span class="white-text">%data%</span>';
+var HTMLtwitter = '<class="flex-item"><span class="orange-text">twitter</span><span class="white-text">%data%</span>';
+var HTMLgithub = '<class="flex-item"><span class="orange-text">github</span><span class="white-text">%data%</span>';
+var HTMLblog = '<class="flex-item"><span class="orange-text">blog</span><span class="white-text">%data%</span>';
+var HTMLlocation = '<class="flex-item"><span class="orange-text">location</span><span class="white-text">%data%</span>';
 
 var HTMLbioPic = '<img src="%data%" class="biopic">';
 var HTMLwelcomeMsg = '<span class="welcome-message">%data%</span>';
@@ -46,7 +46,7 @@ var HTMLonlineDates = '<div class="date-text">%data%</div>';
 var HTMLonlineURL = '<br><a href="#">%data%</a>';
 
 var googleMap = '<div id="map"></div>';
-var HTMLmapOverlay = '<div id="mapOverlay">Write HTML somewhere and a replace of this text.</div>';
+var overlayLabel = '<h4>I lived, worked and/or terrorized here.</h4>';
 
 var internationalizeButton = '<button>Internationalize</button>';
 
@@ -163,7 +163,7 @@ function initializeMap() {
     // or hover over a pin on a map. They usually contain more information
     // about a location.
     var infoWindow = new google.maps.InfoWindow({
-      content: HTMLmapOverlay
+      content: overlayLabel
     });
 
     // hmmmm, I wonder what this is about...
@@ -222,7 +222,6 @@ function initializeMap() {
   // pinPoster(locations) creates pins on the map for each location in
   // the locations array
   pinPoster(locations);
-
 }
 
 /*

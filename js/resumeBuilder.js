@@ -7,7 +7,7 @@ var bio = {
 		"email": "pennywise@beepbeeprichie.com",
 		"github": "zenbuzz",
 		"twitter": "zenonbass",
-		"location": "Bangor, ME"
+		"location": "Derry, ME"
 	},
 	"welcomeMessage": "\"We all float down here!\"",
 	"skills": ["Balloons", "Joke Telling", "Eating Kids", "Sewer Remediation"],
@@ -48,7 +48,7 @@ var work = {
     {
       "employer": "Pennywise & Clown Foolish Enterprises, LLC.",
       "title": "Owner and President",
-      "location": "Bangor, ME",
+      "location": "Derry, ME",
       "dates": "1955-present",
       "description": "Birthday entertainment and \"tough love\" disciplinary services."
     },
@@ -73,23 +73,21 @@ var projects = {
 	]
 }
 
-var map = {
-	"content": work.jobs.employer
+var footer = {
+  "contacts": ""
 }
 
-// If there are any skills in the bio object, replace %data% in helper.js.
+// Prepend data in the bio object, replace %data% in helper.js.
 bio.display = function() {
-	$("#header").append(HTMLskillsStart);
-// When I moved these over from index.html, they caused the skills to move to the top for some reason.
-	$("#header").prepend(HTMLbioPic.replace("%data%", bio.biopic));
-	$("#header").prepend(HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage));
+	$("#header").append(HTMLbioPic.replace("%data%", bio.biopic));
+	$("#header").append(HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage));
 	$("#header").prepend(HTMLlocation.replace("%data%", bio.contacts.location));
 	$("#header").prepend(HTMLgithub.replace("%data%", bio.contacts.github));
 	$("#header").prepend(HTMLemail.replace("%data%", bio.contacts.email));
 	$("#header").prepend(HTMLmobile.replace("%data%", bio.contacts.mobile));
 	$("#header").prepend(HTMLheaderRole.replace("%data%", bio.role));
 	$("#header").prepend(HTMLheaderName.replace("%data%", bio.name));
-
+	$("#header").append(HTMLskillsStart);
 	//Appends the array of bio.skills to the #skills section.
 	//TODO: Can the indexing be any cleaner?
 	index = 0
@@ -165,7 +163,10 @@ education.display = function() {
 // Add a map to the page.
 $("#mapDiv").append(googleMap);
 
-// Add an overlay in HTML when the marker is clicked on the map.
-//map.overlay = function() {
-//	mapOverlay.replace("%data%", map.content);
-//}
+// Prepend contact data from the bio object, replace %data% in helper.js, into the footer.
+footer.display = function() {
+	$("#lets-connect").append(HTMLgithub.replace("%data%", bio.contacts.github));
+	$("#lets-connect").append(HTMLemail.replace("%data%", bio.contacts.email));
+	$("#lets-connect").append(HTMLmobile.replace("%data%", bio.contacts.mobile));
+	$("#lets-connect").append(HTMLlocation.replace("%data%", bio.contacts.location));
+}
