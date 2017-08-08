@@ -12,7 +12,7 @@ var bio = {
 	"welcomeMessage": "\"We all float down here!\"",
 	"skills": ["Balloons", "Joke Telling", "Eating Kids", "Sewer Remediation"],
   "biopic": "images/me.png"
-}
+};
 
 var education = {
   "schools": [
@@ -41,7 +41,7 @@ var education = {
       "url": "http://www.udacity.com"
     }
   ]
-}
+};
 
 var work = {
     "jobs": [
@@ -60,7 +60,7 @@ var work = {
 			"description": "Oversee the new member intake process. Develop community outreach programs."
 		}
   ]
-}
+};
 
 var projects = {
   "projects": [
@@ -68,14 +68,22 @@ var projects = {
       "title": "Project Richie",
       "dates": "1955-1986",
       "description": "Study of clowns on the long term psychological development of rural youth.",
-      "images": ["images/projectrichie.png"]
+			"chart": [5, 8, 16, 35, 56, 69],
+      "images": [""]
+		},
+		{
+			"title": "Project Georgie",
+			"dates": "1955-1955",
+			"description": "Developed a experimental program to help kids float. We all float down here.",
+			"chart": [1, 3, 5, 7, 9, 12],
+			"images": ["images/projectgeorgie.png"]
 		}
 	]
-}
+};
 
 var footer = {
   "contacts": ""
-}
+};
 
 // Prepend data in the bio object, replace %data% in helper.js.
 bio.display = function() {
@@ -89,76 +97,86 @@ bio.display = function() {
 	$("#header").prepend(HTMLheaderName.replace("%data%", bio.name));
 	$("#header").append(HTMLskillsStart);
 	//Appends the array of bio.skills to the #skills section.
-	//TODO: Can the indexing be any cleaner?
-	index = 0
-	bio.skills.forEach(function(skill) {
-		var formattedSkill = HTMLskills.replace("%data%", bio.skills[index]);
+	for (var indexCount = 0; indexCount < bio.skills.length; indexCount++) {
+		var formattedSkill = HTMLskills.replace("%data%", bio.skills[indexCount]);
 		$("#skills").append(formattedSkill);
-		index += 1
-	});
-}
+	}
+};
 
 // If there are any jobs in the work object, replace %data% in helper.js.
 work.display = function() {
 $("#workExperience").append(HTMLworkStart);
-for (job in work.jobs) {
-	var formattedEmployer = HTMLworkEmployer.replace("%data%", work.jobs[job].employer);
-	var formattedTitle = HTMLworkTitle.replace("%data%", work.jobs[job].title);
+for (var indexCount = 0; indexCount < work.jobs.length; indexCount++) {
+	var formattedEmployer = HTMLworkEmployer.replace("%data%", work.jobs[indexCount].employer);
+	var formattedTitle = HTMLworkTitle.replace("%data%", work.jobs[indexCount].title);
 	var formattedEmployerTitle = formattedEmployer +
 			formattedTitle;
 	$(".work-entry:last").append(formattedEmployerTitle);
 
-	var formattedDates = HTMLworkDates.replace("%data%", work.jobs[job].dates);
+	var formattedDates = HTMLworkDates.replace("%data%", work.jobs[indexCount].dates);
 	$(".work-entry:last").append(formattedDates);
 
-	var formattedLocation = HTMLworkLocation.replace("%data%", work.jobs[job].location);
+	var formattedLocation = HTMLworkLocation.replace("%data%", work.jobs[indexCount].location);
 	$(".work-entry:last").append(formattedLocation);
 
-	var formattedDescription = HTMLworkDescription.replace("%data%", work.jobs[job].description);
+	var formattedDescription = HTMLworkDescription.replace("%data%", work.jobs[indexCount].description);
 	$(".work-entry:last").append(formattedDescription);
 	}
-}
+};
 
 // If there are any jobs in the projects object, replace %data% in helper.js.
 projects.display = function() {
-	for (project in projects.projects)  {
+	for (var indexCount = 0; indexCount < projects.projects.length; indexCount++) {
+
 		$("#projects").append(HTMLprojectStart);
 
-		var formattedProjectTitle = HTMLprojectTitle.replace("%data%", projects.projects[project].title);
+		var formattedProjectTitle = HTMLprojectTitle.replace("%data%", projects.projects[indexCount].title);
 		$(".project-entry:last").append(formattedProjectTitle);
 
-		var formattedProjectDates = HTMLprojectDates.replace("%data%", projects.projects[project].dates);
+		var formattedProjectDates = HTMLprojectDates.replace("%data%", projects.projects[indexCount].dates);
 		$(".project-entry:last").append(formattedProjectDates);
 
-		var formattedProjectDescription = HTMLprojectDescription.replace("%data%", projects.projects[project].description);
+		var formattedProjectDescription = HTMLprojectDescription.replace("%data%", projects.projects[indexCount].description);
 		$(".project-entry:last").append(formattedProjectDescription);
 
-		if (projects.projects[project].images.length > 0) {
-			for (image in projects.projects[project].images) {
-				var formattedProjectImage = HTMLprojectImage.replace("%data%", projects.projects[project].images);
+		//Use D3 to display chart data on projects.
+		var formattedProjectChart =
+		d3.select(".chart")
+			.selectAll("div")
+			.data(projects.projects[indexCount].chart)
+				.enter()
+				.append("div")
+				.style("width", function(d) { return d + "px"; })
+				.text(function(d) { return d; });
+		$(".project-entry:last").append(formattedProjectChart);
+
+		//If there are images in projects, display them.
+		if (projects.projects[indexCount].images.length > 0) {
+			for (var indexCount2 = 0; indexCount2 < projects.projects[indexCount].images.length; indexCount2++) {
+				var formattedProjectImage = HTMLprojectImage.replace("%data%", projects.projects[indexCount].images);
 				$(".project-entry:last").append(formattedProjectImage);
 			}
 		}
 	}
-}
+};
 
 // If there are any jobs in the education object, replace %data% in helper.js.
 education.display = function() {
 	$("#education").append(HTMLschoolStart);
 
-	for (school in education.schools)  {
-		var formattedSchoolName = HTMLschoolName.replace("%data%", education.schools[school].name);
+	for (var indexCount = 0; indexCount < education.schools.length; indexCount++) {
+		var formattedSchoolName = HTMLschoolName.replace("%data%", education.schools[indexCount].name);
 		$(".education-entry:last").append(formattedSchoolName);
-		var formattedSchoolDegree = HTMLschoolDegree.replace("%data%", education.schools[school].degree);
+		var formattedSchoolDegree = HTMLschoolDegree.replace("%data%", education.schools[indexCount].degree);
 		$(".education-entry:last").append(formattedSchoolDegree);
-		var formattedSchoolDates = HTMLschoolDates.replace("%data%", education.schools[school].dates);
+		var formattedSchoolDates = HTMLschoolDates.replace("%data%", education.schools[indexCount].dates);
 		$(".education-entry:last").append(formattedSchoolDates);
-		var formattedSchoolLocation = HTMLschoolLocation.replace("%data%", education.schools[school].location);
+		var formattedSchoolLocation = HTMLschoolLocation.replace("%data%", education.schools[indexCount].location);
 		$(".education-entry:last").append(formattedSchoolLocation);
-		var formattedSchoolMajors = HTMLschoolMajor.replace("%data%", education.schools[school].majors);
+		var formattedSchoolMajors = HTMLschoolMajor.replace("%data%", education.schools[indexCount].majors);
 		$(".education-entry:last").append(formattedSchoolMajors);
 	}
-}
+};
 
 // Add a map to the page.
 $("#mapDiv").append(googleMap);
@@ -169,4 +187,4 @@ footer.display = function() {
 	$("#lets-connect").append(HTMLemail.replace("%data%", bio.contacts.email));
 	$("#lets-connect").append(HTMLmobile.replace("%data%", bio.contacts.mobile));
 	$("#lets-connect").append(HTMLlocation.replace("%data%", bio.contacts.location));
-}
+};
