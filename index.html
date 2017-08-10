@@ -19,7 +19,7 @@
     The code below will add information to each of the sections of the
     resume.
     -->
-        <div id="header" class="center-content clear-fix">
+        <div id="header" class="center-content clear-fix" background="images/bkgrd.png">
             <ul id="topContacts" class="flex-box"></ul>
         </div>
         <div style="clear: both;"></div>
@@ -57,26 +57,26 @@
   -->
 
     <script>
-        if(document.getElementsByClassName("flex-item").length === 0) {
-          d3.selectAll("topContacts").display = "none";
+        if (document.getElementsByClassName("flex-item").length === 0) {
+            d3.selectAll("topContacts").display = "none";
         }
-        if(document.getElementsByTagName("h1").length === 0) {
-          d3.selectAll("header").display = "none";
+        if (document.getElementsByTagName("h1").length === 0) {
+            d3.selectAll("header").display = "none";
         }
-        if(document.getElementsByClassName("work-entry").length === 0) {
-          d3.selectAll("work-entry").display = "none";
+        if (document.getElementsByClassName("work-entry").length === 0) {
+            d3.selectAll("work-entry").display = "none";
         }
-        if(document.getElementsByClassName("project-entry").length === 0) {
-          d3.selectAll("project-entry").display = "none";
+        if (document.getElementsByClassName("project-entry").length === 0) {
+            d3.selectAll("project-entry").display = "none";
         }
-        if(document.getElementsByClassName("education-entry").length === 0) {
-          d3.selectAll("education-entry").display = "none";
+        if (document.getElementsByClassName("education-entry").length === 0) {
+            d3.selectAll("education-entry").display = "none";
         }
-        if(document.getElementsByClassName("flex-item").length === 0) {
-          d3.selectAll("flex-item").display = "none";
+        if (document.getElementsByClassName("flex-item").length === 0) {
+            d3.selectAll("flex-item").display = "none";
         }
-        if(document.getElementById("map") === null) {
-          d3.selectAll("mapDiv").display = "none";
+        if (document.getElementById("map") === null) {
+            d3.selectAll("mapDiv").display = "none";
         }
 
 
@@ -98,7 +98,6 @@
         work.display();
         education.display();
         footer.display();
-
     </script>
 
 </body>

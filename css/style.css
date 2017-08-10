@@ -24,6 +24,14 @@ h6 {
   padding: 0 5%;
 }
 
+.chart div {
+  background-color: steelblue;
+  text-align: right;
+  padding: 3px 5%;
+  margin: 2px;
+  color: white;
+}
+
 h1 {
   font-size: 40px;
   color: #f5a623;
@@ -162,15 +170,6 @@ ul {
   padding: 10px;
   width: 200px;
   display: none;
-}
-
-.chart div {
-  font: 10px sans-serif;
-  background-color: steelblue;
-  text-align: right;
-  padding: 3px;
-  margin: 1px;
-  color: white;
 }
 
 img {

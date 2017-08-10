@@ -68,14 +68,16 @@ var projects = {
       "title": "Project Richie",
       "dates": "1955-1986",
       "description": "Study of clowns on the long term psychological development of rural youth.",
+			"chartTitle": "Number of children in each year of the study:",
 			"chart": [5, 8, 16, 35, 56, 69],
-      "images": [""]
+      "images": ["images/projectrichie.png"]
 		},
 		{
 			"title": "Project Georgie",
 			"dates": "1955-1955",
 			"description": "Developed a experimental program to help kids float. We all float down here.",
-			"chart": [1, 3, 5, 7, 9, 12],
+			"chartTitle": "",
+			"chart": [],
 			"images": ["images/projectgeorgie.png"]
 		}
 	]
@@ -139,23 +141,27 @@ projects.display = function() {
 		var formattedProjectDescription = HTMLprojectDescription.replace("%data%", projects.projects[indexCount].description);
 		$(".project-entry:last").append(formattedProjectDescription);
 
-		//Use D3 to display chart data on projects.
-		var formattedProjectChart =
-		d3.select(".chart")
-			.selectAll("div")
-			.data(projects.projects[indexCount].chart)
-				.enter()
-				.append("div")
-				.style("width", function(d) { return d + "px"; })
-				.text(function(d) { return d; });
-		$(".project-entry:last").append(formattedProjectChart);
-
 		//If there are images in projects, display them.
 		if (projects.projects[indexCount].images.length > 0) {
 			for (var indexCount2 = 0; indexCount2 < projects.projects[indexCount].images.length; indexCount2++) {
 				var formattedProjectImage = HTMLprojectImage.replace("%data%", projects.projects[indexCount].images);
 				$(".project-entry:last").append(formattedProjectImage);
 			}
+		}
+
+		//Use D3 to display chart data on projects.
+		$("#projects").append(HTMLprojectChart);
+		if (projects.projects[indexCount].chart.length > 0) {
+			$(".project-entry:last").append(projects.projects[indexCount].chartTitle);
+			var formattedProjectChart =
+				d3.select(".chart")
+					.selectAll("div")
+					.data(projects.projects[indexCount].chart)
+						.enter()
+						.append("div")
+						.style("width", function(d) { return d + "px"; })
+						.text(function(d) { return d; });
+			$(".project-entry:last").append(formattedProjectChart);
 		}
 	}
 };

@@ -30,8 +30,8 @@ var HTMLprojectStart = '<div class="project-entry"></div>';
 var HTMLprojectTitle = '<a href="#">%data%</a>';
 var HTMLprojectDates = '<div class="date-text">%data%</div>';
 var HTMLprojectDescription = '<p><br>%data%</p>';
-var HTMLprojectImage = '<img src="%data%">';
-var HTMLprojectChart = '<div class="chart"></div>'
+var HTMLprojectImage = '<img src="%data%"><br>';
+var HTMLprojectChart = '<div class="project-entry chart"></div><br>';
 
 var HTMLschoolStart = '<div class="education-entry"></div>';
 var HTMLschoolName = '<a href="#">%data%';
@@ -80,7 +80,6 @@ function logClicks(x,y) {
 $(document).click(function(loc) {
   // your code goes here!
 });
-
 
 
 /*
