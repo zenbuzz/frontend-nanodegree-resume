@@ -33,7 +33,7 @@ var education = {
       "url": "http://www.bccmc.edu"
     }
   ],
-  "onlinecourses": [
+  "onlineCourses": [
     {
       "title": "Intro to Programming",
       "school": "Udacity",
@@ -91,10 +91,10 @@ var footer = {
 bio.display = function() {
 	$("#header").append(HTMLbioPic.replace("%data%", bio.biopic));
 	$("#header").append(HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage));
-	$("#header").prepend(HTMLlocation.replace("%data%", bio.contacts.location));
-	$("#header").prepend(HTMLgithub.replace("%data%", bio.contacts.github));
-	$("#header").prepend(HTMLemail.replace("%data%", bio.contacts.email));
-	$("#header").prepend(HTMLmobile.replace("%data%", bio.contacts.mobile));
+	$("#topContacts, #footerContacts").prepend(HTMLlocation.replace("%data%", bio.contacts.location));
+	$("#topContacts, #footerContacts").prepend(HTMLgithub.replace("%data%", bio.contacts.github));
+	$("#topContacts, #footerContacts").prepend(HTMLemail.replace("%data%", bio.contacts.email));
+	$("#topContacts, #footerContacts").prepend(HTMLmobile.replace("%data%", bio.contacts.mobile));
 	$("#header").prepend(HTMLheaderRole.replace("%data%", bio.role));
 	$("#header").prepend(HTMLheaderName.replace("%data%", bio.name));
 	$("#header").append(HTMLskillsStart);
@@ -182,15 +182,20 @@ education.display = function() {
 		var formattedSchoolMajors = HTMLschoolMajor.replace("%data%", education.schools[indexCount].majors);
 		$(".education-entry:last").append(formattedSchoolMajors);
 	}
+
+	$(".education-entry:last").append(HTMLonlineClasses);
+
+	for (var indexCount = 0; indexCount < education.onlineCourses.length; indexCount++) {
+		var formattedOnlineTitle = HTMLonlineTitle.replace("%data%", education.onlineCourses[indexCount].title);
+		var formattedOnlineSchool = HTMLonlineSchool.replace("%data%", education.onlineCourses[indexCount].school);
+		var formattedOnlineCourse = formattedOnlineTitle + formattedOnlineSchool;
+		$(".education-entry:last").append(formattedOnlineCourse);
+		var formattedOnlineDates = HTMLonlineDates.replace("%data%", education.onlineCourses[indexCount].dates);
+		$(".education-entry:last").append(formattedOnlineDates);
+		var formattedOnlineURL = HTMLonlineURL.replace("%data%", education.onlineCourses[indexCount].url);
+		$(".education-entry:last").append(formattedOnlineURL);
+	}
 };
 
 // Add a map to the page.
 $("#mapDiv").append(googleMap);
-
-// Prepend contact data from the bio object, replace %data% in helper.js, into the footer.
-footer.display = function() {
-	$("#lets-connect").append(HTMLgithub.replace("%data%", bio.contacts.github));
-	$("#lets-connect").append(HTMLemail.replace("%data%", bio.contacts.email));
-	$("#lets-connect").append(HTMLmobile.replace("%data%", bio.contacts.mobile));
-	$("#lets-connect").append(HTMLlocation.replace("%data%", bio.contacts.location));
-};
